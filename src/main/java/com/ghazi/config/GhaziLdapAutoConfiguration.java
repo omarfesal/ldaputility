@@ -14,13 +14,13 @@ import org.springframework.ldap.core.support.LdapContextSource;
 
 @Configuration
 @EnableConfigurationProperties(LdapProperties.class)
-@ConditionalOnProperty(prefix = "ldap", name = "url")
+//@ConditionalOnProperty(prefix = "ldap", name = "url")
 public class GhaziLdapAutoConfiguration {
 
     Logger LOGGER = LoggerFactory.getLogger(GhaziLdapAutoConfiguration.class);
 
     @Bean
-    @ConditionalOnMissingBean
+//    @ConditionalOnMissingBean
     public LdapContextSource ldapContextSource(LdapProperties properties) {
         LOGGER.info("Initialize ldapContextSource");
         LdapContextSource source = new LdapContextSource();
@@ -33,13 +33,13 @@ public class GhaziLdapAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnMissingBean
+//    @ConditionalOnMissingBean
     public LdapTemplate ldapTemplate(LdapContextSource source) {
         return new LdapTemplate(source);
     }
 
     @Bean
-    @ConditionalOnMissingBean
+//    @ConditionalOnMissingBean
     public LdapGroupService ldapGroupService(LdapTemplate ldapTemplate) {
         return new LdapGroupService(ldapTemplate);
     }
